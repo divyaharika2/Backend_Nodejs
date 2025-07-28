@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => console.log("MongoDB connection error:", error));
 
 app.use(bodyParser.json());
+app.use(express.json());
 app.use('/vendor', vendorRoutes);
 app.use('/firm', firmRoutes);
 app.use('/product', productRoutes);
@@ -37,7 +38,7 @@ app.listen(PORT, () => {
 
 // Define route
 app.use("/", (req, res) => {
-  res.send("<h1>Welcome to Garam Godaari</h1>");
+  res.send("<h1> Welcome to Garam Godaari </h1>");
 });
 
 

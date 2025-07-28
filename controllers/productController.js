@@ -20,7 +20,10 @@ const addProduct = async(req, res)=> {
     try {
         const{ productName, price, category, bestSeller, description} = req.body;
         const image = req.file? req.file.filename : undefined;
+
         const firmId = req.params.firmId;
+        console.log('firmId:', firmId);
+
         const firm = await Firm.findById(firmId);
 
         if(!firm){
@@ -74,6 +77,7 @@ const deleteProductById = async(req, res) =>{
         if(!deleteProduct){
             return res.status(404).json({error:"No Product Found"});
         }
+         res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({error:"Internal server error"});
