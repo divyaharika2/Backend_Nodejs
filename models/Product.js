@@ -8,16 +8,14 @@ const productSchema = new mongoose.Schema({
     },
 
     price: {
-        type: String,
+        type: Number,
         required: true
     },
 
-    category: {
-        type:[{
-            type: String,
-            enum: ['veg','non-veg']
-            }]
-    },
+    category: [{
+    type: String,
+    enum: ['veg', 'non-veg']
+    }],
 
     image:{
          type: String

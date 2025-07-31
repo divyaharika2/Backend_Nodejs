@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const vendorSchema = new mongoose.Schema({
     username:{
@@ -19,6 +20,7 @@ const vendorSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Firm'
     }]
+
 });
 const Vendor = mongoose.model('Vendor', vendorSchema);
 module.exports = Vendor;
