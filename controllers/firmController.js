@@ -5,15 +5,15 @@ const path = require('path');
 
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/'); // Destination folder where the uploaded images will be stored
-    },
-    filename: function(req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Generating a unique filename
-    }
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, 'uploads'));
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 const addFirm = async(req, res) => {
     try {
@@ -23,7 +23,7 @@ const addFirm = async(req, res) => {
 
         const vendor = await Vendor.findById(req.vendorId);
         if (!vendor) {
-            return res.status(404).json({ message: "Vendor not found" })
+           return res.status(404).json({ message: "Vendor not found" })
         }
 
         if (vendor.firm.length > 0) {

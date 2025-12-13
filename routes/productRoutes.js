@@ -1,6 +1,5 @@
 const express = require('express');
-const path = require('path'); 
-const productController  = require("../controllers/productController");
+const productController = require("../controllers/productController");
 
 const router = express.Router();
 
@@ -13,6 +12,5 @@ router.get('/uploads/:imageName', (req, res) => {
 });
 
 router.delete('/:productId', productController.deleteProductById);
-
 
 module.exports = router;
