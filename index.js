@@ -38,6 +38,6 @@ app.listen(PORT, () => {
   console.log(`Server started and running at ${PORT}`);
 });
 
-app.use('/home', (req, res) => {
-    res.send("<h1> Welcome Divya");
-})
+app.get("/", (req, res) => {
+  res.send("Vendor API is running 🚀");
+});
