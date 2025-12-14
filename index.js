@@ -20,7 +20,7 @@ app.use('/product', productRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Serve static uploads
-app.use('/uploads', express.static( '../uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected successfully!"))
