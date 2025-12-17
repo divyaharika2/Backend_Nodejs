@@ -19,7 +19,7 @@ const addFirm = async(req, res) => {
     try {
         const { firmName, area, category, region, offer } = req.body;
 
-        const image = req.file ? req.file.filename : undefined;
+        const image = req.file ? req.file.filename : null;
 
         const vendor = await Vendor.findById(req.vendorId);
         if (!vendor) {
@@ -44,15 +44,12 @@ const addFirm = async(req, res) => {
 
         const firmId = savedFirm._id
         const vendorFirmName = savedFirm.firmName
+        const firmImage = savedFirm.image
 
-        vendor.firm.push(savedFirm)
-
+        vendor.firm.push(savedFirm._id);
         await vendor.save()
 
-
-
-        return res.status(200).json({ message: 'Firm Added successfully ', firmId, vendorFirmName });
-
+        return res.status(200).json({ message: 'Firm Added successfully ', firmId, vendorFirmName, firmImage });
 
     } catch (error) {
         console.error(error)
